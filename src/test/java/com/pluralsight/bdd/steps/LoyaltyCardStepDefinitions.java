@@ -58,17 +58,18 @@ public class LoyaltyCardStepDefinitions {
         loyaltyCardContext.member.orders(new OrderItem(drink, quantity));
     }
 
+    @DataTableType
+    public OrderItem mapToOrderItem(List<String> orderItemData) {
+        return new OrderItem(
+                orderItemData.get(0),
+                Integer.parseInt(orderItemData.get(1))
+        );
+    }
+
     @When("^(.*) purchases the following drinks")
-    public void tina_purchases_the_following_drinks(String name, Map<String, Integer> orderItems) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        orderItems.forEach((drink, quantity) -> {
-            loyaltyCardContext.member.orders(new OrderItem(drink, quantity));
+    public void tina_purchases_the_following_drinks(String name, List<OrderItem> orderItems) {
+        orderItems.forEach(orderItem -> {
+            loyaltyCardContext.member.orders(orderItem);
         });
     }
 
