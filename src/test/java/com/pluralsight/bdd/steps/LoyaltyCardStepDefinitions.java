@@ -4,6 +4,7 @@ import com.pluralsight.bdd.loyalty.LoyaltyCardProgram;
 import com.pluralsight.bdd.loyalty.LoyaltyProgramMember;
 import com.pluralsight.bdd.loyalty.MenuItem;
 import com.pluralsight.bdd.loyalty.OrderItem;
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -34,10 +35,11 @@ public class LoyaltyCardStepDefinitions {
             loyaltyCardContext.cardProgram = new LoyaltyCardProgram();
             drinkCategoryInfo.stream().forEach(
                     drinkCategory -> {
-                        String drink = drinkCategory.get("Drink");
-                        String category = drinkCategory.get("Category");
-                        Integer points = Integer.parseInt(drinkCategory.get("Points"));
-                        MenuItem menuItem = new MenuItem(drink, category, points);
+                        MenuItem menuItem = new MenuItem(
+                                drinkCategory.get("Drink"),
+                                drinkCategory.get("Category"),
+                                Integer.parseInt(drinkCategory.get("Points"))
+                        );
                         loyaltyCardContext.cardProgram.addToMenu(menuItem);
                     }
             );
