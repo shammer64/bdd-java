@@ -38,7 +38,7 @@ public class LoyaltyCardStepDefinitions {
                         String category = drinkCategory.get("Category");
                         Integer points = Integer.parseInt(drinkCategory.get("Points"));
                         MenuItem menuItem = new MenuItem(drink, category, points);
-                        loyaltyCardContext.cardProgram.addMenuItem(menuItem);
+                        loyaltyCardContext.cardProgram.addToMenu(menuItem);
                     }
             );
         }

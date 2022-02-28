@@ -11,7 +11,7 @@ public class LoyaltyCardProgram {
         super();
     }
 
-    public void addMenuItem(MenuItem menuItem) {
+    public void addToMenu(MenuItem menuItem) {
         drinkCategoryMap.put(menuItem.drink, menuItem.category);
         categoryPointsMap.put(menuItem.category, menuItem.points);
     }
