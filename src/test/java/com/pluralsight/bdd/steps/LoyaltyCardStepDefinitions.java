@@ -2,6 +2,7 @@ package com.pluralsight.bdd.steps;
 
 import com.pluralsight.bdd.loyalty.LoyaltyCardProgram;
 import com.pluralsight.bdd.loyalty.LoyaltyProgramMember;
+import com.pluralsight.bdd.loyalty.MenuItem;
 import com.pluralsight.bdd.loyalty.OrderItem;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -36,7 +37,8 @@ public class LoyaltyCardStepDefinitions {
                         String drink = drinkCategory.get("Drink");
                         String category = drinkCategory.get("Category");
                         Integer points = Integer.parseInt(drinkCategory.get("Points"));
-                        loyaltyCardContext.cardProgram.addMenuItem(drink, category, points);
+                        MenuItem menuItem = new MenuItem(drink, category, points);
+                        loyaltyCardContext.cardProgram.addMenuItem(menuItem);
                     }
             );
         }

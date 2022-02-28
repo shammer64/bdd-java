@@ -8,6 +8,11 @@ public class LoyaltyCardProgram {
     private final Map<String, Integer> categoryPointsMap = new HashMap<>();
 
     public LoyaltyCardProgram() {
+        super();
+    }
+
+    public void addMenuItem(MenuItem menuItem) {
+        addMenuItem(menuItem.drink, menuItem.category, menuItem.points);
     }
 
     public void addMenuItem(String drink, String category, Integer points) {
