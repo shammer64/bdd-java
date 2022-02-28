@@ -22,26 +22,23 @@ public class LoyaltyCardStepDefinitions {
         this.loyaltyCardContext = loyaltyCardContext;
     }
 
+    @DataTableType
+    public MenuItem mapToMenuItem(Map<String, String> menuItemData) {
+        return new MenuItem(
+                menuItemData.get("Drink"),
+                menuItemData.get("Category"),
+                Integer.parseInt(menuItemData.get("Points"))
+        );
+    }
+
     @Given("the following drink categories:")
-    public void the_following_drink_categories(List<Map<String, String>> drinkCategoryInfo) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
+    public void the_following_drink_categories(List<MenuItem> menuItems) {
         if (loyaltyCardContext.cardProgram == null) {
             loyaltyCardContext.cardProgram = new LoyaltyCardProgram();
-            drinkCategoryInfo.stream().forEach(
-                    drinkCategory -> {
-                        MenuItem menuItem = new MenuItem(
-                                drinkCategory.get("Drink"),
-                                drinkCategory.get("Category"),
-                                Integer.parseInt(drinkCategory.get("Points"))
-                        );
-                        loyaltyCardContext.cardProgram.addToMenu(menuItem);
-                    }
+            menuItems.stream().forEach(
+                menuItem -> {
+                    loyaltyCardContext.cardProgram.addToMenu(menuItem);
+                }
             );
         }
     }
