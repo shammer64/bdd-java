@@ -12,12 +12,8 @@ public class LoyaltyCardProgram {
     }
 
     public void addMenuItem(MenuItem menuItem) {
-        addMenuItem(menuItem.drink, menuItem.category, menuItem.points);
-    }
-
-    public void addMenuItem(String drink, String category, Integer points) {
-        drinkCategoryMap.put(drink, category);
-        categoryPointsMap.put(category, points);
+        drinkCategoryMap.put(menuItem.drink, menuItem.category);
+        categoryPointsMap.put(menuItem.category, menuItem.points);
     }
 
     public int getPointValueForOrderItem(OrderItem orderItem) {
